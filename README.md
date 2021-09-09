@@ -45,5 +45,14 @@ Based on [Medium Post](https://andrecronje.medium.com/loot-rarity-d341faa4485c).
 ### Info on Adventure Contract by vfat
 Twitter handle of vfat: [here](https://twitter.com/vfat0)  
 
-To go on adventure, Rarity contract has a requirement of : ``
+To go on adventure, Rarity contract has a requirement of :  
+`_isApprovedOrOwner(msg.sender, _summoner)`. Hence, we need to approve the AdventureParty contract first at Rarity contract: 0xce761D788DF608BD21bdd59d6f4B54b2e27F25Bb  
+`rarity.setApproveForAll(address <adventurepartycontractaddress>, bool true)`
+
+0. Have modified the original contract by vfat to not need to own the nft(summoners) before register.
 1. registerAdventurers(uint[] memory summonerIDs)  
+2. adventureAll()
+
+3. To unregister all at once, you can use the added function `unregisterAll()`. (This is a loop that takes up gas.)
+
+4. Be sure to setApproveForAll (@rarity) to false once you have left this contract.
